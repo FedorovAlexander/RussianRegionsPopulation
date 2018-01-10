@@ -227,6 +227,11 @@ gulp.task('serve', gulp.series('build', function() {
     gulp.series('js', reloader)                            // при изменении пересобираем и обновляем в браузере
   );
 
+  gulp.watch(                                               // следим за данными
+    dirs.source + '/data/*.{json,csv,geojson}',
+    gulp.series('data', reloader)                            // при изменении пересобираем и обновляем в браузере
+  );
+
 }));
 
 // ЗАДАЧА: Задача по умолчанию
