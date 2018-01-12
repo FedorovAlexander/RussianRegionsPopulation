@@ -5,12 +5,12 @@ d3.csv("../data/russia-people-density.csv", function(data) {
 
   var w = 1200;
   var h = 600;
-  // var barPadding = 1;
-
+  var padding = 1;
   var svg = d3.select(".barchart")
               .append("svg")
               .attr("width", w)
               .attr("height", h)
+
   var scaleColor = d3.scaleLinear()
                 .domain([0, d3.max(data, function(d) { return +d.value;} )])
                 .range([0, 255])
@@ -21,6 +21,18 @@ d3.csv("../data/russia-people-density.csv", function(data) {
   var yScale = d3.scaleLinear()
                 .domain([0, d3.max(data, function(d) { return +d.value;} )])
                 .range([0, h])
+                //Define X axis
+	var xAxis = d3.axisBottom()
+					  .scale(xScale)
+					  .ticks(5)
+					  // .tickFormat(formatAsPercentage);
+
+	//Define Y axis
+	var yAxis = d3.axisLeft()
+					  .scale(yScale)
+					  .ticks(5)
+					  // .tickFormat(formatAsPercentage);
+
 
   svg.selectAll("rect")
       .data(dataset)
@@ -31,6 +43,7 @@ d3.csv("../data/russia-people-density.csv", function(data) {
       })
       .attr("y", function(d) {
         j = d.value
+        // console.log(yScale(j))
         return h - yScale(j);
       })
       .attr("width", xScale.bandwidth())
@@ -47,11 +60,35 @@ d3.csv("../data/russia-people-density.csv", function(data) {
       // labels
   svg.selectAll("text")
     .data(dataset)
+    .enter()
+    .append("text")
     .text(function(d) {
       k = d.region
-      return k
+      return k;
     })
-    .attr("x", function(d,i) {
+    .attr("class", "region-label")
+    .attr("text-anchor", "middle")
+    .attr("x", function(d, i) {
+       return xScale(i) + xScale.bandwidth() / 2;
+    })
+    .attr("y", function(d) {
+      j = d.value
+       return h + 10 ;
+    })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "11px")
+    .attr("fill", "white")
 
-    })
+    //Create X axis
+    svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + (h - padding) + ")")
+      .call(xAxis);
+
+    //Create Y axis
+    svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(" + padding + ",0)")
+      .call(yAxis);
+
 });
