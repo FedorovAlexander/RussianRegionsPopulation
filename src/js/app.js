@@ -5,15 +5,15 @@ d3.csv("../data/russia-people-density.csv", function(data) {
 
   var w = 1200;
   var h = 600;
-  var padding = 1;
+  var padding = 30;
   var svg = d3.select(".barchart")
               .append("svg")
               .attr("width", w)
               .attr("height", h)
 
-  var scaleColor = d3.scaleLinear()
-                .domain([0, d3.max(data, function(d) { return +d.value;} )])
-                .range([0, 255])
+  // var scaleColor = d3.scaleLinear()
+  //               .domain([0, d3.max(data, function(d) { return +d.value;} )])
+  //               .range([0, 255])
   var xScale = d3.scaleBand()
           .domain(d3.range(dataset.length))
           .rangeRound([0, w])
@@ -21,29 +21,26 @@ d3.csv("../data/russia-people-density.csv", function(data) {
   var yScale = d3.scaleLinear()
                 .domain([0, d3.max(data, function(d) { return +d.value;} )])
                 .range([0, h])
-                //Define X axis
+
+//Define X axis
 	var xAxis = d3.axisBottom()
 					  .scale(xScale)
-					  .ticks(5)
-					  // .tickFormat(formatAsPercentage);
+					  .ticks(dataset.length)
 
 	//Define Y axis
 	var yAxis = d3.axisLeft()
 					  .scale(yScale)
 					  .ticks(5)
-					  // .tickFormat(formatAsPercentage);
-
 
   svg.selectAll("rect")
       .data(dataset)
       .enter()
       .append("rect")
       .attr("x", function(d, i) {
-        return i * (w / dataset.length);
+        return xScale(i)
       })
       .attr("y", function(d) {
         j = d.value
-        // console.log(yScale(j))
         return h - yScale(j);
       })
       .attr("width", xScale.bandwidth())
@@ -53,8 +50,8 @@ d3.csv("../data/russia-people-density.csv", function(data) {
       })
       .attr("fill", function(d) {
         j = d.value
-        // console.log("rgb(" + Math.round(scaleColor(j)) + ", 0, 0)")
-       return "rgb(" + Math.round(scaleColor(j)) + ",155, 155)";
+      //  return "rgb(" + Math.round(scaleColor(j)) + ",155, 155)";
+      return "rgb(0,104,71)";
       });
 
       // labels
