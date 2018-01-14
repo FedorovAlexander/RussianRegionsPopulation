@@ -20,7 +20,7 @@ d3.csv("../data/russia-people-density.csv", function(data) {
           .paddingInner(0.05);
   var yScale = d3.scaleLinear()
                 .domain([0, d3.max(data, function(d) { return +d.value;} )])
-                .range([0, h])
+                .range([h - padding ,padding])
 
 //Define X axis
 	var xAxis = d3.axisBottom()
@@ -30,7 +30,7 @@ d3.csv("../data/russia-people-density.csv", function(data) {
 	//Define Y axis
 	var yAxis = d3.axisLeft()
 					  .scale(yScale)
-					  .ticks(5)
+					  .ticks(12)
 
   svg.selectAll("rect")
       .data(dataset)
@@ -41,12 +41,12 @@ d3.csv("../data/russia-people-density.csv", function(data) {
       })
       .attr("y", function(d) {
         j = d.value
-        return h - yScale(j);
+        return yScale(j);
       })
       .attr("width", xScale.bandwidth())
       .attr("height", function(d) {
         j = d.value
-        return yScale(j)
+        return (yScale(0) - yScale(j))
       })
       .attr("fill", function(d) {
         j = d.value
