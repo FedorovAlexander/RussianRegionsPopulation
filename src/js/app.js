@@ -6,6 +6,7 @@ d3.csv("../data/russia-people-density.csv", function(data) {
   var w = 1200;
   var h = 600;
   var padding = 30;
+  var formatNumber = d3.format(".1f");
   var svg = d3.select(".barchart")
               .append("svg")
               .attr("width", w)
@@ -31,13 +32,22 @@ d3.csv("../data/russia-people-density.csv", function(data) {
 	var yAxis = d3.axisLeft()
 					  .scale(yScale)
 					  .ticks(12)
+            // .tickValues([1,2])
+            .tickFormat(function(d) {
+              var s = formatNumber(d / 1e6);
+              return this.parentNode.nextSibling
+              ? "\xa0" + s
+              : s + "M";
+            })
+
+
 
   svg.selectAll("rect")
       .data(dataset)
       .enter()
       .append("rect")
       .attr("x", function(d, i) {
-        return xScale(i)
+        return xScale(i) + 10
       })
       .attr("y", function(d) {
         j = d.value
@@ -78,14 +88,20 @@ d3.csv("../data/russia-people-density.csv", function(data) {
 
     //Create X axis
     svg.append("g")
-      .attr("class", "axis")
-      .attr("transform", "translate(0," + (h - padding) + ")")
+      .attr("class", "axisX")
+      .attr("transform", "translate(10," + (h - padding) + ")")
       .call(xAxis);
+
 
     //Create Y axis
     svg.append("g")
-      .attr("class", "axis")
-      .attr("transform", "translate(" + padding + ",0)")
-      .call(yAxis);
+      .attr("class", "axisY")
+      .attr("transform", "translate(" + (padding + 10) + ",0)")
+      .call(yAxis)
+
+    //remove first Y tick
+    svg.selectAll(".axisY .tick")
+    .filter(function (d) { return d === 0;  })
+    .remove();
 
 });
