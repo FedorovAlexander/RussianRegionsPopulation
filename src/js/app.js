@@ -58,7 +58,13 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(xScale))
-      
+      .selectAll("text")
+      			.style("text-anchor", "end")
+      			.attr("dx", "-.8em")
+      			.attr("dy", "-.7em")
+      			.attr("transform", function(d) {
+      					return "rotate(-90)"
+      					});
 
   // add the y Axis
   svg.append("g")
