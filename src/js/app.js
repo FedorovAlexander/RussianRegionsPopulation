@@ -50,21 +50,30 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
       .attr("class", "bar")
       .attr("x", function(d) { return xScale(d.region); })
       .attr("width", xScale.bandwidth())
-      .attr("y", function(d) { return yScale(d.value); })
+      .attr("fill","rgb(0,104,71)")
+      .attr("y", function (d, i) {
+  			return height;
+  		})
+      .attr("height", 0)
+      .transition()
+      .duration(50)
+      .delay(function (d, i) {
+        return i * 50;
+      })
+      .attr("y", function(d,i) { return yScale(d.value); })
       .attr("height", function(d) { return height - yScale(d.value); })
-      .attr("fill","rgb(0,104,71)");
 
   // add the x Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(xScale))
       .selectAll("text")
-      			.style("text-anchor", "end")
-      			.attr("dx", "-.8em")
-      			.attr("dy", "-.7em")
-      			.attr("transform", function(d) {
-      					return "rotate(-90)"
-      					});
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", "-.7em")
+            .attr("transform", function(d) {
+                return "rotate(-90)"
+                });
 
   // add the y Axis
   svg.append("g")
