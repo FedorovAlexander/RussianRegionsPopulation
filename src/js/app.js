@@ -50,7 +50,6 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
       .attr("class", "bar")
       .attr("x", function(d) { return xScale(d.region); })
       .attr("width", xScale.bandwidth())
-      .attr("fill","rgb(0,104,71)")
       .attr("y", function (d, i) {
   			return height;
   		})

@@ -14,8 +14,13 @@ body {
 }
 .container {
   padding-top: 100px;
-padding-bottom: 100px;
+  padding-bottom: 100px;
 }
-.region-label {
-
+.bar {
+  fill: rgb(0,104,71);
+  transition: all 0.5s ease;
+}
+.bar:hover {
+  fill: rgb(160, 203, 60);
+  transition: all 0.5s ease;
 }
