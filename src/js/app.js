@@ -56,10 +56,7 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
   		})
       .attr("height", 0)
       .transition()
-      .duration(50)
-      .delay(function (d, i) {
-        return i * 50;
-      })
+      .duration(1000)
       .attr("y", function(d,i) { return yScale(d.value); })
       .attr("height", function(d) { return height - yScale(d.value); })
 
