@@ -81,12 +81,26 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
       var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
       var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
 
-      //Update the tooltip position and value
+      // Make units correct
+
+      function tooltipText(j) {
+        j = d.value;
+        if (j % 10 > 4 || j % 10 <= 1) {
+          return j + " человек"
+        }
+        else {
+          return j + " человека"
+        }
+      }
+      //Update the tooltip position, value and label
       d3.select(".tooltip")
         .style("left", xPosition + "px")
         .style("top", yPosition + "px")
         .select(".tooltip__text--value")
-        .text(d.value);
+        .text(tooltipText())
+      d3.select(".tooltip")
+        .select(".tooltip__text--label")
+        .text(d.region);
 
       // Show the tooltip
       d3.select(".tooltip").classed("hidden", false);
