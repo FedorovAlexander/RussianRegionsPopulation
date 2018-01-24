@@ -78,7 +78,6 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
   svg.selectAll(".bar")
     .on("mouseover", function(d) {
 
-      //Get this bar's x/y values, then augment for the tooltip
       var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
       var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
 
@@ -86,7 +85,6 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
       d3.select(".tooltip")
         .style("left", xPosition + "px")
         .style("top", yPosition + "px")
-        .style("opacity", "1")
         .select(".tooltip__text--value")
         .text(d.value);
 
