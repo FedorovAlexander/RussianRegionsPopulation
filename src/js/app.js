@@ -75,26 +75,29 @@ d3.csv("../data/russia-people-density.csv", function(error, data) {
       .attr("height", function(d) {
         return height - yScale(d.value);
       })
-    svg.selectAll(".bar")
-      .on("mouseover", function(d) {
+  svg.selectAll(".bar")
+    .on("mouseover", function(d) {
 
-        //Get this bar's x/y values, then augment for the tooltip
-        var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
-        var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+      //Get this bar's x/y values, then augment for the tooltip
+      var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
+      var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
 
-        //Update the tooltip position and value
-        d3.select(".tooltip")
-          .style("left", xPosition + "px")
-          .style("top", yPosition + "px")
-          .style("opacity", "1")
-          .select(".tooltip__text--value")
-          .text(d.value);
+      //Update the tooltip position and value
+      d3.select(".tooltip")
+        .style("left", xPosition + "px")
+        .style("top", yPosition + "px")
+        .style("opacity", "1")
+        .select(".tooltip__text--value")
+        .text(d.value);
 
-        // Show the tooltip
-        d3.select(".tooltip").classed("hidden", false);
-
+      // Show the tooltip
+      d3.select(".tooltip").classed("hidden", false);
+    })
+  svg.selectAll(".bar")
+      // Hide the tooltip
+      .on("mouseout", function() {
+        d3.select(".tooltip").classed("hidden", true);
       })
-
   // add the x Axis
   svg.append("g")
   .attr("transform", "translate(0," + height + ")")
