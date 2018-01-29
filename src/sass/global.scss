@@ -24,9 +24,9 @@ body {
   fill: rgb(160, 203, 60);
   transition: all 0.5s ease;
 }
-.tooltip {
+.tooltip, .tooltip-bub {
   position: absolute;
-  max-width: 200px;
+  max-width: 300px;
   height: auto;
   padding: 10px;
   background-color: #fff;
@@ -44,5 +44,5 @@ body {
   }
 }
 .hidden {
-  display: none;
+  visibility: hidden;;
 }
