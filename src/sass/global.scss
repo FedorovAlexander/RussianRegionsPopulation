@@ -9,8 +9,13 @@ body {
   justify-content: center;
 
 }
-.barchart {
-
+.bubble {
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+.bubble:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s linear;
 }
 .container {
   padding-top: 100px;
