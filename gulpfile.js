@@ -124,8 +124,9 @@ gulp.task('js', function () {
   return gulp.src([
       // список обрабатываемых файлов
       dirs.source + '/js/d3.min.js',
-      dirs.source + '/js/app.js',
-      dirs.source + '/js/script.js',
+      dirs.source + '/js/bars.js',
+      dirs.source + '/js/bubbles.js',
+      dirs.source + '/js/main.js',
     ])
     .pipe(plumber({ errorHandler: onError }))
     .pipe(concat('script.min.js'))
