@@ -39,8 +39,8 @@ body {
   height: auto;
   padding: 10px;
   background-color: #fff;
-  border-radius: 10px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
 
   &__text {
     font-family: sans-serif;
@@ -50,6 +50,10 @@ body {
   }
   &__text--label {
     font-weight: bold;
+    color: #007D80;
+  }
+  &__text--value {
+    color: #00B2B2;
   }
 }
 .hidden {

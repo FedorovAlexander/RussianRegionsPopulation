@@ -90,7 +90,6 @@ d3.csv("../data/russia-people-density.csv", function(d) {
       // Show the tooltip
       d3.select(".tooltip-bub")
       .classed("hidden", false)
-      .transition(500)
     })
 
   svgBub.selectAll(".bubble")
