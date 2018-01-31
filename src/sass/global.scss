@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: $font-family;
   color: $text-color;
-  background-color: #ccc;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -53,4 +53,23 @@ body {
 }
 .hidden-block {
   display: none;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
+  &__item {
+    min-width: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    margin-right: 5px;
+    background-color: #00B2B2;
+    font-size: 16px;
+    color: #fff;
+  }
+}
+.btn-active {
+  background-color: #007D80;
 }
