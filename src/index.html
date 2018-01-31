@@ -7,13 +7,17 @@
 <body>
   <!-- @@include('img/sprite-svg.svg') -->
 <div class="container">
+  <div class="buttons">
+    <button class="buttons__bar">Гистограмма</button>
+    <button class="buttons__bubble">Пузырьки</button>
+  </div>
   <div class="barchart">
     <div class="tooltip hidden">
       <p class="tooltip__text tooltip__text--label"></p>
       <p class="tooltip__text tooltip__text--value"></p>
     </div>
   </div>
-  <div class="bubble-chart">
+  <div class="bubble-chart hidden-block">
     <div class="tooltip-bub hidden">
       <p class="tooltip-bub__text tooltip-bub__text--label"></p>
       <p class="tooltip-bub__text tooltip-bub__text--value"></p>
