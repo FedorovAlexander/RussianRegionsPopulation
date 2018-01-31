@@ -7,6 +7,9 @@ var margin = {
   width = 1240 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom
 
+// append the svg object to the body of the page
+// append a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
 var svgBub = d3.select(".bubble-chart")
                 .append("svg")
                 .attr("width", width + margin.left + margin.right)
@@ -14,19 +17,22 @@ var svgBub = d3.select(".bubble-chart")
                 .append("g")
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var formatBub = d3.format(",d");
-
+// set the color scheme
 var colorBub = d3.scaleOrdinal(d3.schemeCategory10);
 
+// set width and height
+// set padding between the bubbles
 var pack = d3.pack()
     .size([width, height])
     .padding(1.5);
 
+// get the data
 d3.csv("../data/russia-people-density.csv", function(d) {
   if (d.value) return d;
 }, function(error, classes) {
   if (error) throw error;
 
+// structure
   var root = d3.hierarchy({children: classes})
       .sum(function(d) { return d.value; })
       .each(function(d) {
@@ -54,6 +60,7 @@ d3.csv("../data/russia-people-density.csv", function(d) {
     .append("use")
       .attr("xlink:href", function(d) { return "#" + d.data.region; });
 
+// Tooltips
   svgBub.selectAll(".bubble")
     .on("mousemove", function(d) {
 
