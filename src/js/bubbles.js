@@ -27,7 +27,7 @@ var pack = d3.pack()
     .padding(1.5);
 
 // get the data
-d3.csv("../data/russia-people-density.csv", function(d) {
+d3.csv("data/russia-people-density.csv", function(d) {
   if (d.value) return d;
 }, function(error, classes) {
   if (error) throw error;

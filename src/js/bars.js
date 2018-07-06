@@ -34,7 +34,7 @@ var svg = d3.select(".barchart")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // get the data
-d3.csv("../data/russia-people-density.csv", function(error, data) {
+d3.csv("data/russia-people-density.csv", function(error, data) {
   if (error)
     throw error;
 
