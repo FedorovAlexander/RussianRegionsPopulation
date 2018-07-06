@@ -7,6 +7,9 @@
 
 Запуск: npm start.
 
-
+Внешний вид:
+Гистограмма
 ![bars](/src/img/bars.jpeg)
+
+Пузырьковая диаграмма.
 ![bars](/src/img/bubbles.jpeg)
