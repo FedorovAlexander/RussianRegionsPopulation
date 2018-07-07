@@ -1,11 +1,11 @@
 var margin = {
     top: 20,
     right: 20,
-    bottom: 120,
+    bottom: 170,
     left: 40
   },
   width = 1240 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+  height = 570 - margin.top - margin.bottom;
 
 // set the ranges
 var xScale = d3.scaleBand()
