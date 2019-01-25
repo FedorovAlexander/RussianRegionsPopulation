@@ -76,6 +76,13 @@ body {
     background-color: #00B2B2;
     font-size: 16px;
     color: #fff;
+    opacity: 1;
+    transition: opacity 0.1s linear;
+  }
+
+  &__item:hover {
+    opacity: 0.7;
+    transition: opacity 0.1s linear;
   }
 }
 .btn-active {
